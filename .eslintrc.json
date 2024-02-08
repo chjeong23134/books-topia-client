@@ -1,3 +1,44 @@
 {
-  "extends": "next/core-web-vitals"
+	"root": true,
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": [
+		"next/core-web-vitals",
+		// typescript 표준 규칙 모음
+		"plugin:@typescript-eslint/recommended",
+		// import 관련 규칙 모음
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript",
+		// prettier 관련 규칙 모음
+		"prettier",
+		// 에어비엔비 설정
+		"airbnb",
+		"airbnb/hooks",
+		"airbnb-typescript"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"project": [
+			"./tsconfig.json"
+		]
+		// tsconfig 파일의 경로를 참조 해줍니다.
+		// 기준은 root 입니다.
+	},
+	"plugins": [
+		"react-hooks"
+	],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": [
+			"warn",
+			{
+				"additionalHooks": "useRecoilCallback"
+			}
+		]
+	}
 }
