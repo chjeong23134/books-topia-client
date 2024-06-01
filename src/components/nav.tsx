@@ -13,9 +13,10 @@ export default function Nav() {
 			<div className={styles.menuWrapper}>
 				<div className={styles.logo}>
 					<Image src={logo}
-					height={40}
-					width={45}
-					alt="logo" />
+						height={40}
+						width={200}
+						alt="SVG" />
+
 				</div>
 			</div>
 		</div>
