@@ -1,11 +1,13 @@
 .nav {
 	height: 30px;
 
+
 	border-bottom: 1px solid #d9d9d9;
-	padding: 15px;
+	padding: 15px 30px;
 
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 
 	position: sticky;
 	top: 0px;
@@ -14,11 +16,25 @@
 
 	.menuWrapper {
 		display: flex;
+		flex-direction: row;
 		align-items: center;
 
 		.logo {
-			height: 40px;
-			width: 45px;
+			display: flex;
+		}
+
+		.button {
+			display: flex;
+
+			margin: 0 0 0 20px;
+
+			color: #74747d;
+		}
+
+		.input {
+			display: flex;
+
+			margin: 0 0 0 auto;
 		}
 	}
 }
