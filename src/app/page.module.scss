@@ -2,71 +2,97 @@
 	width: 100%;
 	height: 100%;
 
-	display: flex;
-	flex-direction: column;
+	display: block;
 
-	.latestComment {
-		width: 100%;
+	.mainWrapper {
+		width: 1300px;
 
-		margin: 0 30px;
+		margin: auto;
 
 		display: flex;
 		flex-direction: column;
 
-		.label {
-			margin: 30px 0 0 0;
-			font-weight: bold;
-			font-size: x-large;
-		}
-
-		.list {
+		.latestComment {
 			width: 100%;
 
-			margin: 20px 0;
-
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
 
-			overflow-y: scroll;
+			.label {
+				margin: 30px 0 0 0;
+				font-weight: bold;
+				font-size: x-large;
+			}
 
-			.latestCommentItem {
-				height: 200px;
+			.list {
+				width: 100%;
 
-				flex: 0 0 450px;
-
-				margin: 0 10px;
-				border: 1px solid #d9d9d9;
-				border-radius: 15px;
-				padding: 10px;
+				margin: 20px 0;
 
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 
-				background-color: #ffffff;
+				overflow-y: scroll;
 
-				&:first-child {
-					margin: 0 10px 0 0;
-				}
+				.latestCommentItem {
+					flex: 0 0 450px;
 
-				.header {
-					height: 30px;
-
-					display: flex;
-					flex-direction: row;
-				}
-
-				.body {
-					height: 140px;
+					margin: 0 10px;
+					border: 1px solid #d9d9d9;
+					border-radius: 15px;
+					padding: 10px;
 
 					display: flex;
-					flex-direction: row;
-				}
+					flex-direction: column;
 
-				.footer {
-					height: 30px;
+					background-color: #ffffff;
 
-					display: flex;
-					flex-direction: row;
+					&:first-child {
+						margin: 0 10px 0 0;
+					}
+
+					&:last-child {
+						margin: 0 0 0 10px;
+					}
+
+					.header {
+						display: flex;
+						flex-direction: row;
+					}
+
+					.body {
+						height: 102px;
+
+						margin: 10px 0;
+
+						display: flex;
+						flex-direction: row;
+
+						.bookImage {
+							border: 1px solid #d9d9d9;
+						}
+
+						.comment {
+							width: 380px;
+							height: 100px;
+
+							margin: 0 0 0 10px;
+
+							display: -webkit-box;
+							-webkit-box-orient: vertical;
+							-webkit-line-clamp: 5;
+
+							overflow: hidden;
+							text-overflow: ellipsis;
+
+							font-size: medium;
+						}
+					}
+
+					.footer {
+						display: flex;
+						flex-direction: row;
+					}
 				}
 			}
 		}

@@ -1,40 +1,66 @@
 .nav {
-	height: 30px;
-
+	width: 100%;
 
 	border-bottom: 1px solid #d9d9d9;
-	padding: 15px 30px;
+	padding: 10px 0;
 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-
+	display: block;
 	position: sticky;
 	top: 0px;
 
 	background-color: #FFFFFF;
 
-	.menuWrapper {
+	font-size: 14px;
+
+	.navWrapper {
+		width: 1300px;
+
+		margin: auto;
+
 		display: flex;
 		flex-direction: row;
-		align-items: center;
+		justify-content: space-between;
 
-		.logo {
+		.menuWrapper {
 			display: flex;
-		}
+			flex-direction: row;
+			align-items: center;
 
-		.button {
-			display: flex;
+			.logo {
+				display: flex;
+			}
 
-			margin: 0 0 0 20px;
+			.button {
+				display: flex;
 
-			color: #74747d;
-		}
+				margin: 0 0 0 20px;
 
-		.input {
-			display: flex;
+				color: #74747d;
+			}
 
-			margin: 0 0 0 auto;
+			.input {
+				width: 200px;
+
+				margin: 0 0 0 auto;
+				border: 1px solid #f2f2f2;
+				border-radius: 5px;
+				padding: 10px 15px;
+
+				display: flex;
+
+				background-color: #f2f2f2;
+
+
+				outline: none;
+			}
+
+			.input:focus {
+				border-color: #d9d9d9;
+			}
+
+			.input::placeholder {
+				color: #74747d;
+			}
 		}
 	}
 }
