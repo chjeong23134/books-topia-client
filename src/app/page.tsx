@@ -11,11 +11,16 @@ interface Comment {
 	comment: string;
 }
 
+interface Book {
+	name: string;
+	writer: string;
+}
+
 export default function Home() {
 	const commentItems: Comment[] = [
 		{
 			"userName": "책사랑",
-			"comment": "이 책 정말 좋아요! 처음부터 끝까지 한순간도 눈을 뗄 수 없었어요. 작가의 문체와 스토리 전개가 정말 흥미로웠고, 등장인물들도 매우 매력적이었습니다. 이 책을 읽으면서 많은 감정을 느낄 수 있었고, 마지막 페이지를 넘길 때는 아쉬움이 남을 정도였어요. 다른 사람들에게도 꼭 추천하고 싶은 책입니다. 이 책 정말 좋아요! 처음부터 끝까지 한순간도 눈을 뗄 수 없었어요. 작가의 문체와 스토리 전개가 정말 흥미로웠고, 등장인물들도 매우 매력적이었습니다. 이 책을 읽으면서 많은 감정을 느낄 수 있었고, 마지막 페이지를 넘길 때는 아쉬움이 남을 정도였어요. 다른 사람들에게도 꼭 추천하고 싶은 책입니다."
+			"comment": "이 책 정말 좋아요! 처음부터 끝까지 한순간도 눈을 뗄 수 없었어요. 작가의 문체와 스토리 전개가 정말 흥미로웠고, 등장인물들도 매우 매력적이었습니다. 이 책을 읽으면서 많은 감정을 느낄 수 있었고, 마지막 페이지를 넘길 때는 아쉬움이 남을 정도였어요. 다른 사람들에게도 꼭 추천하고 싶은 책입니다. "
 		},
 		{
 			"userName": "독서광",
@@ -46,6 +51,73 @@ export default function Home() {
 			"comment": "결말이 좀 예측 가능했어요. 책의 전반적인 흐름과 전개는 매우 좋았지만, 결말이 다소 예상 가능해서 조금 아쉬웠습니다. 하지만 그 과정에서의 이야기 전개와 캐릭터들의 감정 표현은 매우 뛰어났어요. 전체적으로는 만족스러운 책이었고, 다음 작품도 기대됩니다."
 		},
 	];
+
+	const bookItems: Book[] = [
+		{
+			"name": "해리 포터와 마법사의 돌 해리 포터와 마법사의 돌",
+			"writer": "J.K. 롤링"
+		},
+		{
+			"name": "죄와 벌",
+			"writer": "표도르 도스토옙스키"
+		},
+		{
+			"name": "태백산맥",
+			"writer": "조정래"
+		},
+		{
+			"name": "1984",
+			"writer": "조지 오웰"
+		},
+		{
+			"name": "삼국지",
+			"writer": "나관중"
+		},
+		{
+			"name": "무정",
+			"writer": "이광수"
+		},
+		{
+			"name": "토지",
+			"writer": "박경리"
+		},
+		{
+			"name": "대망",
+			"writer": "야마오카 소하치"
+		},
+		{
+			"name": "어린 왕자",
+			"writer": "앙투안 드 생텍쥐페리"
+		},
+		{
+			"name": "위대한 개츠비",
+			"writer": "F. 스콧 피츠제럴드"
+		},
+		{
+			"name": "나미야 잡화점의 기적",
+			"writer": "히가시노 게이고"
+		},
+		{
+			"name": "모모",
+			"writer": "미하엘 엔데"
+		},
+		{
+			"name": "작은 아씨들",
+			"writer": "루이자 메이 올컷"
+		},
+		{
+			"name": "데미안",
+			"writer": "헤르만 헤세"
+		},
+		{
+			"name": "백설 공주",
+			"writer": "그림 형제"
+		},
+		{
+			"name": "브레이브 뉴 월드",
+			"writer": "올더스 헉슬리"
+		}
+	]
 
 	return (
 		<div className={styles.main}>
@@ -82,10 +154,27 @@ export default function Home() {
 				</div>
 
 				<div className={styles.bestSeller}>
-					베스트 셀러 순위
+					<span className={styles.label}>
+						베스트 셀러 순위
+					</span>
 
 					<div className={styles.list}>
+						{bookItems.map((book => (
+							<div className={styles.bookItem}>
+								<div className={styles.bookImage}>
+									<Image src={bookIamge} alt="book image" height={300} width={225} />
+								</div>
 
+								<div className={styles.name}>
+									{book.name}
+								</div>
+
+								<div className={styles.writer}>
+									{book.writer}
+								</div>
+							</div>
+
+						)))}
 					</div>
 				</div>
 
