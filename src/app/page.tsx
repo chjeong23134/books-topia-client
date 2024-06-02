@@ -172,6 +172,10 @@ export default function Home() {
 								<div className={styles.writer}>
 									{book.writer}
 								</div>
+
+								<div className={styles.score}>
+									별점
+								</div>
 							</div>
 
 						)))}
@@ -179,18 +183,60 @@ export default function Home() {
 				</div>
 
 				<div className={styles.userMostScore}>
-					북스토피아 유저 픽 순위
+					<span className={styles.label}>
+						북스토피아 유저 픽 순위
+					</span>
 
 					<div className={styles.list}>
+						{bookItems.map((book => (
+							<div className={styles.bookItem}>
+								<div className={styles.bookImage}>
+									<Image src={bookIamge} alt="book image" height={300} width={225} />
+								</div>
 
+								<div className={styles.name}>
+									{book.name}
+								</div>
+
+								<div className={styles.writer}>
+									{book.writer}
+								</div>
+
+								<div className={styles.score}>
+									별점
+								</div>
+							</div>
+
+						)))}
 					</div>
 				</div>
 
 				<div className={styles.newBook}>
-					신간 도서
+					<span className={styles.label}>
+						신간 발매 도서
+					</span>
 
 					<div className={styles.list}>
+						{bookItems.map((book => (
+							<div className={styles.bookItem}>
+								<div className={styles.bookImage}>
+									<Image src={bookIamge} alt="book image" height={300} width={225} />
+								</div>
 
+								<div className={styles.name}>
+									{book.name}
+								</div>
+
+								<div className={styles.writer}>
+									{book.writer}
+								</div>
+
+								<div className={styles.score}>
+									별점
+								</div>
+							</div>
+
+						)))}
 					</div>
 				</div>
 
