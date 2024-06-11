@@ -5,6 +5,10 @@ import Image from "next/image";
 
 import Avata from "@/components/avata";
 import bookIamge from "../images/book1.jpg";
+import likeEmptyImage from "../images/like_empty.png";
+import likeBlueImage from "../images/like_blue.png";
+import starEmptyImage from "../images/star_empty.png";
+import starYellowImage from "../images/star_yellow.png";
 
 interface Comment {
 	userName: string;
@@ -145,7 +149,8 @@ export default function Home() {
 								</div>
 
 								<div className={styles.footer}>
-									좋아요
+									<Image src={likeEmptyImage} alt="like empty image" height={20} width={20} />
+									<Image src={likeBlueImage} alt="like blue image" height={20} width={20} />
 									댓글
 								</div>
 							</div>
@@ -174,7 +179,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									별점
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
 								</div>
 							</div>
 
@@ -203,7 +212,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									별점
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
 								</div>
 							</div>
 
@@ -232,7 +245,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									별점
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
 								</div>
 							</div>
 
