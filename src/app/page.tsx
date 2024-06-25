@@ -22,7 +22,7 @@ interface Book {
 
 interface Topic {
 	userName: string;
-	content: string;
+	title: string;
 	imageYN: boolean;
 }
 
@@ -132,42 +132,42 @@ export default function Home() {
 	const topicItems: Topic[] = [
 		{
 			userName: "책사랑",
-			content: "요즘 읽고 있는 책 정말 재미있어요! 주인공이 너무 매력적이에요. 다들 읽어보셨나요?",
+			title: "요즘 읽고 있는 책, 다들 읽어보셨나요?",
 			imageYN: true
 		},
 		{
 			userName: "독서광",
-			content: "최근에 새로 나온 소설 보셨나요? 어떤가요? 읽어볼만 한가요?",
+			title: "새로 나온 소설, 읽어볼만 한가요?",
 			imageYN: false
 		},
 		{
 			userName: "책벌레",
-			content: "도서관에서 추천 받은 책인데 생각보다 괜찮네요. 혹시 다른 추천도 있으신가요?",
+			title: "도서관 추천 도서, 다른 추천도 있으신가요?",
 			imageYN: true
 		},
 		{
 			userName: "책린이",
-			content: "책 읽는 거 좋아하는데 요즘은 바빠서 못 읽고 있어요. 다들 시간 어떻게 내시나요?",
+			title: "책 읽는 시간 어떻게 내시나요?",
 			imageYN: false
 		},
 		{
 			userName: "책중독",
-			content: "밤새 책 읽느라 잠을 못 잤어요. 이 책 정말 끝내주네요!",
+			title: "밤새 책 읽었어요, 정말 끝내주는 책!",
 			imageYN: true
 		},
 		{
 			userName: "독서매니아",
-			content: "책 제목 기억 안 나는데 표지가 파란색이었던 그 책 아시는 분?",
+			title: "표지가 파란색인 책, 제목 아시는 분?",
 			imageYN: false
 		},
 		{
 			userName: "책사냥꾼",
-			content: "중고서점에서 득템했어요! 다들 중고서점 자주 가시나요?",
+			title: "중고서점에서 득템! 다들 중고서점 자주 가시나요?",
 			imageYN: true
 		},
 		{
 			userName: "책감상",
-			content: "책 다 읽고 나니 여운이 남네요. 다른 분들도 비슷한 느낌 받으셨나요?",
+			title: "책 다 읽고 난 후의 여운, 다들 비슷한 느낌 받으셨나요?",
 			imageYN: false
 		}
 	];
@@ -228,11 +228,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
 								</div>
 							</div>
 
@@ -261,11 +261,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
 								</div>
 							</div>
 
@@ -294,11 +294,11 @@ export default function Home() {
 								</div>
 
 								<div className={styles.score}>
-									₩<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starYellowImage} alt="like blue image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="like empty image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
 								</div>
 							</div>
 
@@ -312,25 +312,40 @@ export default function Home() {
 					</span>
 
 					<div className={styles.list}>
-						{topicItems.map((topic => (
-							<div className={styles.latestTopicItem} style={{borderColor: topic.imageYN ? '#5ba9cd' : '#d9d9d9'}}>
-								<div className={styles.header}>
-									<Avata name={topic.userName} />
-								</div>
+						<div className={styles.header}>
+							<div>말머리</div>
+							<div>제목</div>
+							<div>좋아요</div>
+							<div>작성자</div>
+							<div>작성일</div>
+						</div>
 
-								<div className={styles.body}>
-									<div className={styles.topic}>
-										{topic.content}
+						<div className={styles.body}>
+							{topicItems.map((topic => (
+								<div className={styles.latestTopicItem}>
+									<div className={styles.category}>
+										일반
+									</div>
+
+									<div className={styles.title}>
+										{topic.title}
+									</div>
+
+									<div className={styles.like}>
+										<Image src={likeBlueImage} alt="like blue image" height={10} width={10} /> 10
+									</div>
+
+									<div className={styles.userName}>
+										{topic.userName}
+									</div>
+
+									<div className={styles.createDate}>
+										2024-06-25
 									</div>
 								</div>
+							)))}
+						</div>
 
-								<div className={styles.footer}>
-									<Image src={likeEmptyImage} alt="like empty image" height={20} width={20} />
-									<Image src={likeBlueImage} alt="like blue image" height={20} width={20} />
-									댓글
-								</div>
-							</div>
-						)))}
 					</div>
 				</div>
 			</div>
