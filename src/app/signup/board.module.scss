@@ -1,0 +1,110 @@
+.signUp {
+	width: 100%;
+	height: 100%;
+
+	display: block;
+
+	.signUpWrapper {
+		width: 1300px;
+
+		margin: auto;
+		padding: 0 10px;
+
+		max-width: 500px;
+
+		margin: 10px auto 0 auto;
+
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+
+		background-color: #FFFFFF;
+
+		.infoWrapper {
+			margin: 100px auto 50px auto;
+			display: flex;
+			flex-direction: column;
+
+			.logo {
+				height: 80px;
+				width: 400px;
+
+				margin: auto;
+			}
+
+			h2 {
+				margin: auto;
+
+				color: #4B5563;
+			}
+
+			p {
+				margin: auto;
+
+				color: #4B5563;
+			}
+		}
+
+		.labelWrapper {
+			margin: 20px 0 0 0;
+
+			display: flex;
+			flex-direction: column;
+
+			.title {
+				margin: auto;
+				font-size: 25px;
+			}
+
+			label {
+				margin: 5px;
+			}
+
+			input {
+				border: 1px solid #D9D9D9;
+				border-radius: 5px;
+				padding: 10px;
+
+				--tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+				--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+				box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+					var(--tw-ring-shadow, 0 0 #0000),
+					var(--tw-shadow);
+			}
+		}
+
+		.buttonWrapper {
+			margin: 20px 0 0 0;
+
+			display: flex;
+			justify-content: center;
+
+			.signButton {
+				height: 35px;
+
+				margin: 30px 0 0 0;
+				border: 0;
+				border-radius: 5px;
+	
+				display: flex;
+				flex: 1;
+	
+				justify-content: center;
+				align-items: center;
+	
+				outline: 0;
+	
+				color: #FFFFFF;
+				background-color: #4572C3;
+			}
+	
+			.signButton:hover {
+				background-color: #305596;
+			}
+
+			p {
+				margin: 0 5px 0 0;
+			}
+		}
+	}
+}

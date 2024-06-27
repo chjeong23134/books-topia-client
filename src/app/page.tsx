@@ -9,6 +9,8 @@ import likeEmptyImage from "../images/like_empty.png";
 import likeBlueImage from "../images/like_blue.png";
 import starEmptyImage from "../images/star_empty.png";
 import starYellowImage from "../images/star_yellow.png";
+//
+//
 
 interface Comment {
 	userName: string;
@@ -25,6 +27,9 @@ interface Topic {
 	title: string;
 	imageYN: boolean;
 }
+//
+//
+//
 
 export default function Home() {
 	const commentItems: Comment[] = [
@@ -171,10 +176,14 @@ export default function Home() {
 			imageYN: false
 		}
 	];
+	//
+	//
+	//
+	//
 
 	return (
-		<div className={styles.main}>
-			<div className={styles.mainWrapper}>
+		<div className={styles.home}>
+			<div className={styles.homeWrapper}>
 				<div className={styles.latestComment}>
 					<span className={styles.label}>
 						가장 최근 코멘트

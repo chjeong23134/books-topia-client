@@ -8,10 +8,10 @@ import RecoilProvider from "./recoilProvider";
 
 export const metadata = {
 	title: {
-		default: "북스토피아 - 도서 추천 및 평가 서비스 ",
+		default: "북스토피아 - 도서 평론 및 공유 서비스 ",
 		template: '%s | BooksTopia'
 	},
-	description: "북스토피아 도서 추천 및 평가 서비스",
+	description: "북스토피아 도서 평론 및 공유 서비스",
 	icons: {
 		icon: '/icon.png',
 	}
@@ -25,6 +25,10 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
+	//
+	//
+	//
+	//
 	return (
 		<html lang="kr">
 			<body>
