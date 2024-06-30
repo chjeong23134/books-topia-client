@@ -4,12 +4,41 @@ import styles from "./board.module.scss";
 //
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useSetRecoilState } from "recoil";
 
 import logo from "@/images/logo.png"
+
+import { signin } from "@/apis/userApi";
+import { jwtState, userState } from "@/consts/atom";
 //
 //
 
 export default function SignIn() {
+	const router = useRouter();
+
+	const setUser = useSetRecoilState(userState);
+    const setJwt = useSetRecoilState(jwtState);
+
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+	//
+
+	function signinHandler() {
+		signin(email, password).then((res) => {
+			localStorage.setItem("user", JSON.stringify(res.user));
+			localStorage.setItem("jwt", res.accessJwt);
+
+			setUser(res.user);
+			setJwt(res.accessJwt);
+			
+			router.push("/b");
+		});
+	}
+	//
+	//
+
 	return (
 		<div className={styles.signIn}>
 			<div className={styles.signInWrapper}>
@@ -27,15 +56,15 @@ export default function SignIn() {
 
 				<div className={styles.labelWrapper}>
 					<label>이메일</label>
-					<input placeholder="moim@modumoa.com" />
+					<input onChange={(e) => setEmail(e.target.value)} placeholder="moim@modumoa.com" />
 				</div>
 
 				<div className={styles.labelWrapper}>
 					<label>비밀번호</label>
-					<input type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
+					<input onChange={(e) => setPassword(e.target.value)} type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
 				</div>
 				<div className={styles.buttonWrapper}>
-					<button className={styles.signButton}>로그인</button>
+					<button onClick={signinHandler} className={styles.signButton}>로그인</button>
 				</div>
 
 				<div className={styles.buttonWrapper}>

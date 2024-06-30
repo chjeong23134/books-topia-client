@@ -4,11 +4,12 @@ import styles from "./board.module.scss";
 //
 
 import Image from "next/image";
-import { signup } from "@/apis/userApi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import logo from "@/images/logo.png"
+
+import { signup } from "@/apis/userApi";
 //
 //
 
