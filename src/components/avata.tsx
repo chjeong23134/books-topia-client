@@ -1,13 +1,20 @@
+"use client"
+
 import styles from "./avata.module.scss";
+//
 
-interface Props {
-	name: string;
-}
+import { useRecoilValue } from "recoil";
 
-export default function Avata(props: Props) {
+import { userState } from "@/consts/atom";
+//
+//
+
+export default function Avata() {
+	const user = useRecoilValue(userState);
+
 	return (
 		<div className={styles.avata}>
-			<span className={styles.userName}>{props.name}</span>
+			<span className={styles.userName}>{user.name}</span>
 		</div>
 	);
 }
