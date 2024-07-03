@@ -11,16 +11,28 @@ import logo from "@/images/logo.png";
 import Avata from "./avata";
 
 import { userState } from "@/consts/atom";
+import { useRouter } from "next/navigation";
 //
 //
 
 export default function Nav() {
+	const router = useRouter();
+
 	const user = useRecoilValue(userState);
 	const [isClient, setIsClient] = useState(false);
+	//
 
 	useEffect(() => {
 		setIsClient(true);
 	}, []);
+
+	function moveSignUpHandler() {
+		router.push("/signup");
+	}
+
+	function moveSignInHandler() {
+		router.push("/signin");
+	}
 
 	return (
 		<div className={styles.nav}>
@@ -52,8 +64,8 @@ export default function Nav() {
 							</div>
 						) : (
 							<>
-								<div className={styles.button}>로그인</div>
-								<div className={styles.button}>회원가입</div>
+								<div className={styles.button} onClick={moveSignInHandler}>로그인</div>
+								<div className={styles.button} onClick={moveSignUpHandler}>회원가입</div>
 							</>
 						)
 					)}

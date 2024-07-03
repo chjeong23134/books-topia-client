@@ -33,7 +33,7 @@ export default function SignIn() {
 			setUser(res.user);
 			setJwt(res.accessJwt);
 			
-			router.push("/b");
+			router.push("");
 		});
 	}
 	//
