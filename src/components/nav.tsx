@@ -60,7 +60,7 @@ export default function Nav() {
 					{isClient && (
 						user.id ? (
 							<div>
-								<Avata />
+								<Avata name="푸 기" />
 							</div>
 						) : (
 							<>
