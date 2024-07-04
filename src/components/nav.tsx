@@ -5,24 +5,48 @@ import styles from "./nav.module.scss";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRouter } from "next/navigation";
 
 import logo from "@/images/logo.png";
 import Avata from "./avata";
 
-import { userState } from "@/consts/atom";
-import { useRouter } from "next/navigation";
+import { jwtState, userState } from "@/consts/atom";
+import { validate } from "@/apis/userApi";
 //
 //
 
 export default function Nav() {
 	const router = useRouter();
 
+	const resetUser = useResetRecoilState(userState);
+    const resetJwt = useResetRecoilState(jwtState);
+
 	const user = useRecoilValue(userState);
+	const jwt = useRecoilValue(jwtState);
+
 	const [isClient, setIsClient] = useState(false);
 	//
 
 	useEffect(() => {
+		if(Object.keys(user).length === 0 || !jwt) {
+			localStorage.removeItem("user");
+			localStorage.removeItem("jwt");
+
+			resetUser();
+			resetJwt();
+
+			return setIsClient(true);
+		}
+
+		validate(jwt, user.id).catch(() => {
+			localStorage.removeItem("user");
+			localStorage.removeItem("jwt");
+
+			resetUser();
+			resetJwt();
+		});
+
 		setIsClient(true);
 	}, []);
 

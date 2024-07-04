@@ -9,9 +9,7 @@ const axios: AxiosInstance = Axios.create({
 export interface UserType {
 	readonly id: number;
 	readonly email: string;
-	readonly password: string;
 	readonly name: string;
-	readonly isDeleted: string;
 	readonly createDate: Date;
 	readonly updateDate: Date;
 }
@@ -45,4 +43,16 @@ export async function signin(
             password: password,
         })
         .then((res) => res.data);
+}
+
+export async function validate(
+	jwt: string,
+	id: number
+): Promise<UserType[]> {
+	return await axios
+		.get("/validate/" + id, {
+			headers: {
+				Authorization: `Bearer ${jwt}`,
+			},
+		}).then((res) => res.data);
 }
