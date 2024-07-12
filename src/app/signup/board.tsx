@@ -5,7 +5,7 @@ import styles from "./board.module.scss";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import logo from "@/images/logo.png"
 
@@ -22,8 +22,15 @@ export default function Board() {
 	const [passwordVerify, setPasswordVerify] = useState<string>("");
 	//
 
-	function signupHandler() {
+	function signupClickHandler() {
 		signup(email, password, name).then((res) => { console.log(res); router. push("/"); });
+	}
+	
+	function signupKeyDownHandler(e: React.KeyboardEvent<HTMLInputElement>) {
+		console.log("키다운 동작");
+		if(e.key === 'Enter') {
+			signup(email, password, name).then((res) => { console.log(res); router. push("/"); });
+		}
 	}
 	//
 	//
@@ -45,26 +52,26 @@ export default function Board() {
 
 				<div className={styles.labelWrapper}>
 					<label>닉네임</label>
-					<input onChange={(e) => setName(e.target.value)} placeholder="한글, 알파벳, 숫자를 조합하여 2~20자 사이로 입력해주세요." />
+					<input onKeyDown={signupKeyDownHandler} onChange={(e) => setName(e.target.value)} placeholder="한글, 알파벳, 숫자를 조합하여 2~20자 사이로 입력해주세요." />
 				</div>
 
 				<div className={styles.labelWrapper}>
 					<label>이메일</label>
-					<input onChange={(e) => setEmail(e.target.value)} placeholder="books@topia.com" />
+					<input onKeyDown={signupKeyDownHandler} onChange={(e) => setEmail(e.target.value)} placeholder="books@topia.com" />
 				</div>
 
 				<div className={styles.labelWrapper}>
 					<label>비밀번호</label>
-					<input onChange={(e) => setPassword(e.target.value)} type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
+					<input onKeyDown={signupKeyDownHandler} onChange={(e) => setPassword(e.target.value)} type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
 				</div>
 
 				<div className={styles.labelWrapper}>
 					<label>비밀번호 확인</label>
-					<input onChange={(e) => setPasswordVerify(e.target.value)} type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
+					<input onKeyDown={signupKeyDownHandler} onChange={(e) => setPasswordVerify(e.target.value)} type='password' placeholder="알파벳, 숫자를 조합하여 6자리 이상을 입력해주세요." />
 				</div>
 
 				<div className={styles.buttonWrapper}>
-					<button onClick={signupHandler} className={styles.signButton}>회원가입</button>
+					<button onClick={signupClickHandler} className={styles.signButton}>회원가입</button>
 				</div>
 
 				<div className={styles.buttonWrapper}>
