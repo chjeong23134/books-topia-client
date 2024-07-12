@@ -128,18 +128,16 @@ export default function Home() {
 		bestList(jwt).then(res => {
 			if (res.item) {
 				setBestBookItems(res.item);
-
-				setLoading(false)
 			}
 		});
 
 		newList(jwt).then(res => {
 			if (res.item) {
 				setNewBookItems(res.item);
-
-				setLoading(false)
 			}
 		});
+
+		setLoading(false)
 	}, [])
 
 	return (
@@ -195,7 +193,7 @@ export default function Home() {
 											{book.title}
 										</div>
 
-										<div className={styles.adauthorult}>
+										<div className={styles.author}>
 											{book.author}
 										</div>
 

@@ -32,12 +32,12 @@ enum ListTypeEnum {
 
 export async function search(
 	jwt: string,
-	keyWord: string
+	keyword: string
 ): Promise<AladinResponseType> {
 	return await axios
 		.get("/search", {
 			params: {
-				keyword: keyWord,
+				keyword: keyword,
 			},
 			headers: {
 				Authorization: `Bearer ${jwt}`,

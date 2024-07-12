@@ -4,7 +4,7 @@ import styles from "./nav.module.scss";
 //
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +25,9 @@ export default function Nav() {
 	const user = useRecoilValue(userState);
 	const jwt = useRecoilValue(jwtState);
 
-	const [loading, setLoading] = useState(true);
+	const [keyword, setKeyword] = useState<string>("");
+
+	const [loading, setLoading] = useState<boolean>(true);
 	//
 
 	useEffect(() => {
@@ -50,12 +52,18 @@ export default function Nav() {
 		setLoading(false);
 	}, []);
 
-	function moveSignUpHandler() {
+	function moveSignUpClickHandler() {
 		router.push("/signup");
 	}
 
-	function moveSignInHandler() {
+	function moveSignInClickHandler() {
 		router.push("/signin");
+	}
+
+	function moveSearchKeyDownHandler(e: React.KeyboardEvent<HTMLInputElement>) {
+		if(e.key === "Enter") {
+			router.push("/search/" + keyword);
+		}
 	}
 
 	return (
@@ -78,9 +86,12 @@ export default function Nav() {
 
 				<div className={styles.menuWrapper}>
 					<input
+						onKeyDown={moveSearchKeyDownHandler}
+						onChange={(e) => setKeyword(e.target.value)}
 						className={styles.input}
 						placeholder="도서, 유저, 커뮤니티를 검색하세요"
 					/>
+					
 					{!loading && (
 						user.id ? (
 							<div>
@@ -88,8 +99,8 @@ export default function Nav() {
 							</div>
 						) : (
 							<>
-								<div className={styles.button} onClick={moveSignInHandler}>로그인</div>
-								<div className={styles.button} onClick={moveSignUpHandler}>회원가입</div>
+								<div className={styles.button} onClick={moveSignInClickHandler}>로그인</div>
+								<div className={styles.button} onClick={moveSignUpClickHandler}>회원가입</div>
 							</>
 						)
 					)}
