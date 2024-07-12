@@ -12,7 +12,7 @@ import logo from "@/images/logo.png";
 import Avata from "./avata";
 
 import { jwtState, userState } from "@/consts/atom";
-import { validate } from "@/apis/userApi";
+import { validate } from "@/apis/authApi";
 //
 //
 
@@ -25,7 +25,7 @@ export default function Nav() {
 	const user = useRecoilValue(userState);
 	const jwt = useRecoilValue(jwtState);
 
-	const [isClient, setIsClient] = useState(false);
+	const [loading, setLoading] = useState(true);
 	//
 
 	useEffect(() => {
@@ -36,7 +36,7 @@ export default function Nav() {
 			resetUser();
 			resetJwt();
 
-			return setIsClient(true);
+			return setLoading(false);
 		}
 
 		validate(jwt, user.id).catch(() => {
@@ -47,7 +47,7 @@ export default function Nav() {
 			resetJwt();
 		});
 
-		setIsClient(true);
+		setLoading(false);
 	}, []);
 
 	function moveSignUpHandler() {
@@ -81,7 +81,7 @@ export default function Nav() {
 						className={styles.input}
 						placeholder="도서, 유저, 커뮤니티를 검색하세요"
 					/>
-					{isClient && (
+					{!loading && (
 						user.id ? (
 							<div>
 								<Avata name="푸 기" />

@@ -9,7 +9,7 @@ import { useState } from "react";
 
 import logo from "@/images/logo.png"
 
-import { signup } from "@/apis/userApi";
+import { signup } from "@/apis/authApi";
 //
 //
 

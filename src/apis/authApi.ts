@@ -14,7 +14,7 @@ export interface UserType {
 	readonly updateDate: Date;
 }
 
-interface AuthType {
+interface AuthResponseType {
 	readonly accessJwt: string;
 	readonly user: UserType;
 }
@@ -36,7 +36,7 @@ export async function signup(
 export async function signin(
 	email: string,
 	password: string
-): Promise<AuthType> {
+): Promise<AuthResponseType> {
     return await axios
         .post("/signin", {
             email: email,

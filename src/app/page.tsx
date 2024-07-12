@@ -1,25 +1,27 @@
+"use client"
+
 import styles from "./page.module.scss";
 //
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 import Avata from "@/components/avata";
+
 import bookIamge from "../images/book1.jpg";
 import likeEmptyImage from "../images/like_empty.png";
 import likeBlueImage from "../images/like_blue.png";
 import starEmptyImage from "../images/star_empty.png";
 import starYellowImage from "../images/star_yellow.png";
+import { BookType, bestList, newList } from "@/apis/aladinApi";
+import { jwtState } from "@/consts/atom";
 //
 //
 
 interface Comment {
 	userName: string;
 	content: string;
-}
-
-interface Book {
-	name: string;
-	writer: string;
 }
 
 interface Topic {
@@ -32,6 +34,14 @@ interface Topic {
 //
 
 export default function Home() {
+	const jwt = useRecoilValue(jwtState);
+
+	const [bestBookItems, setBestBookItems] = useState<BookType[]>([])
+
+	const [newBookItems, setNewBookItems] = useState<BookType[]>([])
+
+	const [loading, setLoading] = useState<boolean>(true);
+
 	const commentItems: Comment[] = [
 		{
 			"userName": "책사랑",
@@ -66,73 +76,6 @@ export default function Home() {
 			"content": "결말이 좀 예측 가능했어요. 책의 전반적인 흐름과 전개는 매우 좋았지만, 결말이 다소 예상 가능해서 조금 아쉬웠습니다. 하지만 그 과정에서의 이야기 전개와 캐릭터들의 감정 표현은 매우 뛰어났어요. 전체적으로는 만족스러운 책이었고, 다음 작품도 기대됩니다."
 		},
 	];
-
-	const bookItems: Book[] = [
-		{
-			"name": "해리 포터와 마법사의 돌 해리 포터와 마법사의 돌",
-			"writer": "J.K. 롤링"
-		},
-		{
-			"name": "죄와 벌",
-			"writer": "표도르 도스토옙스키"
-		},
-		{
-			"name": "태백산맥",
-			"writer": "조정래"
-		},
-		{
-			"name": "1984",
-			"writer": "조지 오웰"
-		},
-		{
-			"name": "삼국지",
-			"writer": "나관중"
-		},
-		{
-			"name": "무정",
-			"writer": "이광수"
-		},
-		{
-			"name": "토지",
-			"writer": "박경리"
-		},
-		{
-			"name": "대망",
-			"writer": "야마오카 소하치"
-		},
-		{
-			"name": "어린 왕자",
-			"writer": "앙투안 드 생텍쥐페리"
-		},
-		{
-			"name": "위대한 개츠비",
-			"writer": "F. 스콧 피츠제럴드"
-		},
-		{
-			"name": "나미야 잡화점의 기적",
-			"writer": "히가시노 게이고"
-		},
-		{
-			"name": "모모",
-			"writer": "미하엘 엔데"
-		},
-		{
-			"name": "작은 아씨들",
-			"writer": "루이자 메이 올컷"
-		},
-		{
-			"name": "데미안",
-			"writer": "헤르만 헤세"
-		},
-		{
-			"name": "백설 공주",
-			"writer": "그림 형제"
-		},
-		{
-			"name": "브레이브 뉴 월드",
-			"writer": "올더스 헉슬리"
-		}
-	]
 
 	const topicItems: Topic[] = [
 		{
@@ -181,182 +124,204 @@ export default function Home() {
 	//
 	//
 
+	useEffect(() => {
+		bestList(jwt).then(res => {
+			if (res.item) {
+				setBestBookItems(res.item);
+
+				setLoading(false)
+			}
+		});
+
+		newList(jwt).then(res => {
+			if (res.item) {
+				setNewBookItems(res.item);
+
+				setLoading(false)
+			}
+		});
+	}, [])
+
 	return (
 		<div className={styles.home}>
 			<div className={styles.homeWrapper}>
-				<div className={styles.latestComment}>
-					<span className={styles.label}>
-						가장 최근 코멘트
-					</span>
+				{!loading && (
+					<>
+						<div className={styles.latestComment}>
+							<span className={styles.label}>
+								가장 최근 코멘트
+							</span>
 
-					<div className={styles.list}>
-						{commentItems.map((comment => (
-							<div className={styles.latestCommentItem}>
+							<div className={styles.list}>
+								{commentItems.map((comment => (
+									<div className={styles.latestCommentItem}>
+										<div className={styles.header}>
+											<Avata name={comment.userName} />
+										</div>
+
+										<div className={styles.body}>
+											<div className={styles.bookImage}>
+												<Image src={bookIamge} alt="book image" height={100} width={75} />
+											</div>
+
+											<div className={styles.comment}>
+												{comment.content}
+											</div>
+										</div>
+
+										<div className={styles.footer}>
+											<Image src={likeEmptyImage} alt="like empty image" height={20} width={20} />
+											<Image src={likeBlueImage} alt="like blue image" height={20} width={20} />
+											댓글
+										</div>
+									</div>
+								)))}
+							</div>
+						</div>
+
+						<div className={styles.bestSeller}>
+							<span className={styles.label}>
+								베스트 셀러 순위
+							</span>
+
+							<div className={styles.list}>
+								{bestBookItems.map((book => (
+									<div className={styles.bookItem}>
+										<div className={styles.bookImage}>
+											<Image src={book.cover} alt="book image" height={300} width={225} />
+										</div>
+
+										<div className={styles.title}>
+											{book.title}
+										</div>
+
+										<div className={styles.adauthorult}>
+											{book.author}
+										</div>
+
+										<div className={styles.score}>
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
+										</div>
+									</div>
+
+								)))}
+							</div>
+						</div>
+
+						<div className={styles.userMostScore}>
+							<span className={styles.label}>
+								북스토피아 유저 픽 순위
+							</span>
+
+							<div className={styles.list}>
+								{bestBookItems.map((book => (
+									<div className={styles.bookItem}>
+										<div className={styles.bookImage}>
+											<Image src={bookIamge} alt="book image" height={300} width={225} />
+										</div>
+
+										<div className={styles.title}>
+											{book.title}
+										</div>
+
+										<div className={styles.author}>
+											{book.author}
+										</div>
+
+										<div className={styles.score}>
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
+										</div>
+									</div>
+
+								)))}
+							</div>
+						</div>
+
+						<div className={styles.newBook}>
+							<span className={styles.label}>
+								신간 발매 도서
+							</span>
+
+							<div className={styles.list}>
+								{newBookItems.map((book => (
+									<div className={styles.bookItem}>
+										<div className={styles.bookImage}>
+											<Image src={book.cover} alt="book image" height={300} width={225} />
+										</div>
+
+										<div className={styles.title}>
+											{book.title}
+										</div>
+
+										<div className={styles.author}>
+											{book.author}
+										</div>
+
+										<div className={styles.score}>
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
+											<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
+										</div>
+									</div>
+
+								)))}
+							</div>
+						</div>
+
+						<div className={styles.latestTopic}>
+							<span className={styles.label}>
+								커뮤니티
+							</span>
+
+							<div className={styles.list}>
 								<div className={styles.header}>
-									<Avata name={comment.userName} />
+									<div>말머리</div>
+									<div>제목</div>
+									<div>좋아요</div>
+									<div>작성자</div>
+									<div>작성일</div>
 								</div>
 
 								<div className={styles.body}>
-									<div className={styles.bookImage}>
-										<Image src={bookIamge} alt="book image" height={100} width={75} />
-									</div>
+									{topicItems.map((topic => (
+										<div className={styles.latestTopicItem}>
+											<div className={styles.category}>
+												일반
+											</div>
 
-									<div className={styles.comment}>
-										{comment.content}
-									</div>
+											<div className={styles.title}>
+												{topic.title}
+											</div>
+
+											<div className={styles.like}>
+												<Image src={likeBlueImage} alt="like blue image" height={10} width={10} /> 10
+											</div>
+
+											<div className={styles.userName}>
+												{topic.userName}
+											</div>
+
+											<div className={styles.createDate}>
+												2024-06-25
+											</div>
+										</div>
+									)))}
 								</div>
 
-								<div className={styles.footer}>
-									<Image src={likeEmptyImage} alt="like empty image" height={20} width={20} />
-									<Image src={likeBlueImage} alt="like blue image" height={20} width={20} />
-									댓글
-								</div>
 							</div>
-						)))}
-					</div>
-				</div>
-
-				<div className={styles.bestSeller}>
-					<span className={styles.label}>
-						베스트 셀러 순위
-					</span>
-
-					<div className={styles.list}>
-						{bookItems.map((book => (
-							<div className={styles.bookItem}>
-								<div className={styles.bookImage}>
-									<Image src={bookIamge} alt="book image" height={300} width={225} />
-								</div>
-
-								<div className={styles.name}>
-									{book.name}
-								</div>
-
-								<div className={styles.writer}>
-									{book.writer}
-								</div>
-
-								<div className={styles.score}>
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
-								</div>
-							</div>
-
-						)))}
-					</div>
-				</div>
-
-				<div className={styles.userMostScore}>
-					<span className={styles.label}>
-						북스토피아 유저 픽 순위
-					</span>
-
-					<div className={styles.list}>
-						{bookItems.map((book => (
-							<div className={styles.bookItem}>
-								<div className={styles.bookImage}>
-									<Image src={bookIamge} alt="book image" height={300} width={225} />
-								</div>
-
-								<div className={styles.name}>
-									{book.name}
-								</div>
-
-								<div className={styles.writer}>
-									{book.writer}
-								</div>
-
-								<div className={styles.score}>
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
-								</div>
-							</div>
-
-						)))}
-					</div>
-				</div>
-
-				<div className={styles.newBook}>
-					<span className={styles.label}>
-						신간 발매 도서
-					</span>
-
-					<div className={styles.list}>
-						{bookItems.map((book => (
-							<div className={styles.bookItem}>
-								<div className={styles.bookImage}>
-									<Image src={bookIamge} alt="book image" height={300} width={225} />
-								</div>
-
-								<div className={styles.name}>
-									{book.name}
-								</div>
-
-								<div className={styles.writer}>
-									{book.writer}
-								</div>
-
-								<div className={styles.score}>
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starYellowImage} alt="star yellow image" height={20} width={20} />
-									<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
-								</div>
-							</div>
-
-						)))}
-					</div>
-				</div>
-
-				<div className={styles.latestTopic}>
-					<span className={styles.label}>
-						커뮤니티
-					</span>
-
-					<div className={styles.list}>
-						<div className={styles.header}>
-							<div>말머리</div>
-							<div>제목</div>
-							<div>좋아요</div>
-							<div>작성자</div>
-							<div>작성일</div>
 						</div>
-
-						<div className={styles.body}>
-							{topicItems.map((topic => (
-								<div className={styles.latestTopicItem}>
-									<div className={styles.category}>
-										일반
-									</div>
-
-									<div className={styles.title}>
-										{topic.title}
-									</div>
-
-									<div className={styles.like}>
-										<Image src={likeBlueImage} alt="like blue image" height={10} width={10} /> 10
-									</div>
-
-									<div className={styles.userName}>
-										{topic.userName}
-									</div>
-
-									<div className={styles.createDate}>
-										2024-06-25
-									</div>
-								</div>
-							)))}
-						</div>
-
-					</div>
-				</div>
+					</>
+				)}
 			</div>
 		</div>
 	)

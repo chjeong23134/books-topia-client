@@ -3,7 +3,6 @@
 import styles from "./avata.module.scss";
 //
 
-import { UserType } from "@/apis/userApi";
 //
 //
 

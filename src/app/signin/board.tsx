@@ -10,7 +10,7 @@ import { useSetRecoilState } from "recoil";
 
 import logo from "@/images/logo.png"
 
-import { signin } from "@/apis/userApi";
+import { signin } from "@/apis/authApi";
 import { jwtState, userState } from "@/consts/atom";
 //
 //
