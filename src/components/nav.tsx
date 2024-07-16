@@ -79,8 +79,6 @@ export default function Nav() {
 						/>
 					</div>
 
-					<div className={styles.button}>도서</div>
-
 					<div className={styles.button}>커뮤니티</div>
 				</div>
 

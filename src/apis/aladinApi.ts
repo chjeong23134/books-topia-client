@@ -42,7 +42,7 @@ export async function search(
 			headers: {
 				Authorization: `Bearer ${jwt}`,
 			},
-		}).then((res) => res.data);
+		}).then(res => res.data);
 }
 
 export async function bestList(
@@ -56,7 +56,7 @@ export async function bestList(
 			headers: {
 				Authorization: `Bearer ${jwt}`,
 			},
-		}).then((res) => res.data);
+		}).then(res => res.data);
 }
 
 export async function newList(
@@ -70,5 +70,17 @@ export async function newList(
 			headers: {
 				Authorization: `Bearer ${jwt}`,
 			},
-		}).then((res) => res.data);
+		}).then(res => res.data);
+}
+
+export async function detail(
+	jwt: string,
+	id: number
+): Promise<AladinResponseType> {
+	return await axios
+		.get("/detail/" + id, {
+			headers: {
+				Authorization: `Bearer ${jwt}`,
+			}
+		}).then(res => res.data);
 }

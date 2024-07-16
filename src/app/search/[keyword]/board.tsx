@@ -6,7 +6,6 @@ import styles from "./board.module.scss";
 import { useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import starEmptyImage from "@/images/star_empty.png";
 import starYellowImage from "@/images/star_yellow.png";
@@ -71,7 +70,6 @@ export default function Board(props: PropType) {
 											<Image src={starEmptyImage} alt="star empty image" height={20} width={20} />
 										</div>
 									</div>
-
 								)))}
 							</div>
 						</div>

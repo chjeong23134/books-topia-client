@@ -1,8 +1,25 @@
+import Board from "./board"
+//
+//
 
-export default function BookDetail({params}: {params: {id: number}}) {
+
+export const metadata = {
+	title: "도서 상세",
+	description: "북스토피아 도서 평론 및 공유 서비스"
+}
+
+
+interface ParamType {
+	readonly id: number
+}
+//
+//
+//
+
+export default function BookDetail({ params }: { params: ParamType }) {
 	return (
 		<div>
-			북넘버: {params.id}
+			<Board id={params.id} />
 		</div>
 	)
 }

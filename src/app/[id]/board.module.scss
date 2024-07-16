@@ -1,0 +1,50 @@
+.detail {
+	width: 100%;
+	height: 100%;
+
+	display: block;
+
+	.detailWrapper {
+		width: 1300px;
+
+		margin: auto;
+		padding: 0 10px;
+
+		display: flex;
+		flex-direction: column;
+
+		.detailBook {
+			width: 1300px;
+
+			margin: 100px auto;
+
+			display: flex;
+			flex-direction: row;
+
+			.bookInfo {
+				width: 800px;
+
+				margin: 0 0 0 50px;
+
+				.title {
+					font-size: xx-large;
+					font-weight: bold;
+				}
+
+				.author {
+					font-size: x-large;
+				}
+
+				.publisher {
+					margin-right: 5px;
+					font-size: medium;
+				}
+
+				.pubDate {
+					margin-left: 5px;
+					font-size: medium;
+				}
+			}
+		}
+	}
+}
