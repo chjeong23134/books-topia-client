@@ -6,6 +6,11 @@ import styles from "./board.module.scss";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import Image from "next/image";
+import moment from "moment";
+
+import starEmptyImage from "@/images/star_empty.png";
+import starYellowImage from "@/images/star_yellow.png";
+import likeEmptyImage from "@/images/like_empty.png";
 
 import { jwtState } from "@/consts/atom";
 import { BookType, detail } from "@/apis/aladinApi";
@@ -52,18 +57,35 @@ export default function Board(props: PropType) {
 								{book.author}
 							</div>
 
-							<div style={{display: "flex", flexDirection: "row", color: "#74747d"}}>
+							<div style={{ margin: "15px 0 30px 20px", display: "flex", flexDirection: "row" }}>
 								<div className={styles.publisher}>
 									{book.publisher}
 								</div>
 								·
 								<div className={styles.pubDate}>
-									{book.pubDate}
+									{moment(book.pubDate).format('YYYY년 MM월 DD일')}
 								</div>
 							</div>
 
 							<div className={styles.description}>
 								{book.description}
+							</div>
+
+							<div className={styles.line} />
+
+							<div className={styles.reviewWrapper}>
+								<div className={styles.score}>
+									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
+									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
+									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
+									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
+									<Image src={starEmptyImage} alt="star empty image" height={50} width={50} />
+								</div>
+
+								<div className={styles.button}>
+									<Image src={likeEmptyImage} alt="like empty image" height={50} width={50} />
+									코멘트
+								</div>
 							</div>
 						</div>
 					</div>
