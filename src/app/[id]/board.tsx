@@ -45,50 +45,78 @@ export default function Board(props: PropType) {
 		<div className={styles.detail}>
 			<div className={styles.detailWrapper}>
 				{!loading && book !== null && (
-					<div className={styles.detailBook}>
-						<Image src={book.cover} alt="book image" height={600} width={450} />
+					<>
+						<div className={styles.detailBook}>
+							<Image src={book.cover} alt="book image" height={480} width={360} />
 
-						<div className={styles.bookInfo}>
-							<div className={styles.title}>
-								{book.title}
-							</div>
-
-							<div className={styles.author}>
-								{book.author}
-							</div>
-
-							<div style={{ margin: "15px 0 30px 20px", display: "flex", flexDirection: "row" }}>
-								<div className={styles.publisher}>
-									{book.publisher}
-								</div>
-								·
-								<div className={styles.pubDate}>
-									{moment(book.pubDate).format('YYYY년 MM월 DD일')}
-								</div>
-							</div>
-
-							<div className={styles.description}>
-								{book.description}
-							</div>
-
-							<div className={styles.line} />
-
-							<div className={styles.reviewWrapper}>
-								<div className={styles.score}>
-									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
-									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
-									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
-									<Image src={starYellowImage} alt="star yellow image" height={50} width={50} />
-									<Image src={starEmptyImage} alt="star empty image" height={50} width={50} />
+							<div className={styles.bookInfo}>
+								<div className={styles.title}>
+									{book.title}
 								</div>
 
-								<div className={styles.button}>
-									<Image src={likeEmptyImage} alt="like empty image" height={50} width={50} />
-									코멘트
+								<div className={styles.author}>
+									{book.author}
+								</div>
+
+								<div style={{ margin: "0 0 30px 20px", display: "flex", flexDirection: "row" }}>
+									<div className={styles.publisher}>
+										{book.publisher}
+									</div>
+									·
+									<div className={styles.pubDate}>
+										{moment(book.pubDate).format('YYYY년 MM월 DD일')}
+									</div>
+								</div>
+
+								<div className={styles.description}>
+									{book.description}
+								</div>
+
+								<div className={styles.line} />
+
+								<div className={styles.reviewMenuWrapper}>
+									<div className={styles.score}>
+										<Image src={starYellowImage} alt="star yellow image" height={40} width={40} />
+										<Image src={starYellowImage} alt="star yellow image" height={40} width={40} />
+										<Image src={starYellowImage} alt="star yellow image" height={40} width={40} />
+										<Image src={starYellowImage} alt="star yellow image" height={40} width={40} />
+										<Image src={starEmptyImage} alt="star empty image" height={40} width={40} />
+									</div>
+
+									<div className={styles.button}>
+										<Image src={likeEmptyImage} alt="like empty image" height={40} width={40} />
+										코멘트
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+
+						<div className={styles.myReviewWrapper}>
+							<div className={styles.avata}>
+								푸기
+							</div>
+
+							<div className={styles.content}>
+								의미를 부여하려 애쓸수록 상상력은 배제된다.
+								<br />
+								그래서일까 그들의 시작과 끝은 내 상상과는 달랐다.
+							</div>
+
+							<div className={styles.menu}>
+								<div className={styles.button}>
+									수정
+								</div>
+
+								<div className={styles.button}>
+									삭제
+								</div>
+							</div>
+						</div>
+
+						<div className={styles.reviewListWrapper}>
+							
+						</div>
+					</>
 				)}
 			</div>
 		</div>
